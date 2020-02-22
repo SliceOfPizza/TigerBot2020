@@ -8,30 +8,26 @@
 package frc.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import frc.robot.Constants;
+import com.ctre.phoenix.motorcontrol.can.*;
 
-public class Shooter extends SubsystemBase {
+public class Elevator extends SubsystemBase {
   /**
-   * Creates a new Shooter.
+   * Creates a new Elevator.
    */
-  WPI_TalonSRX shooterMotor;
-  public Shooter() {
-    shooterMotor = new WPI_TalonSRX(Constants.SHOOTER_MOTOR);
+  private WPI_TalonSRX ElevatorMotor = new WPI_TalonSRX(0);
+  private final double speed = 0.5;
+  public Elevator() {
   }
 
-  public void shooterOn(){
-    shooterMotor.setVoltage(8);
+  public void forward(){
+    ElevatorMotor.set(ControlMode.PercentOutput, speed);
+  }
+  public void backward(){
+    ElevatorMotor.set(ControlMode.PercentOutput, -speed);
+  }
+  public void stop(){
+    ElevatorMotor.set(ControlMode.PercentOutput, 0);
   }
 
-  public void shooterOff(){
-    shooterMotor.setVoltage(0);
-  }
-
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
 }
