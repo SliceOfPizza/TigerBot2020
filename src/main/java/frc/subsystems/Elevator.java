@@ -10,12 +10,13 @@ package frc.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.*;
+import frc.robot.Constants;
 
 public class Elevator extends SubsystemBase {
   /**
    * Creates a new Elevator.
    */
-  private WPI_TalonSRX ElevatorMotor = new WPI_TalonSRX(0);
+  private WPI_TalonSRX ElevatorMotor = new WPI_TalonSRX(Constants.ELEVATOR_MOTOR);
   private final double speed = 0.5;
   public Elevator() {
   }

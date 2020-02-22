@@ -8,13 +8,19 @@
 package frc.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.subsystems.Elevator;
 
 public class ManualElevator extends CommandBase {
   /**
    * Creates a new ManualElevator.
    */
-  public ManualElevator() {
-    // Use addRequirements() here to declare subsystem dependencies.
+  int POV;
+  Elevator m_Elevator;
+  public ManualElevator(Elevator elevator, int POV) {
+    addRequirements(elevator);
+    this.POV = POV;
+    this.m_Elevator = elevator;
+
   }
 
   // Called when the command is initially scheduled.
@@ -25,6 +31,15 @@ public class ManualElevator extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if(POV == -1){
+      m_Elevator.stop();
+    }
+    else if(POV == 0){
+      m_Elevator.forward();
+    }
+    else if(POV == 4){
+      m_Elevator.backward();
+    }
   }
 
   // Called once the command ends or is interrupted.
