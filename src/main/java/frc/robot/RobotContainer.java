@@ -34,7 +34,9 @@ public class RobotContainer {
 
     //Joystick and Gamepad buttons
     //private final JoystickButton jsButnShifter = new JoystickButton(this.joystick, 12);
-    private final JoystickButton shooterButton = new JoystickButton(this.gamepad, 2);
+    private final JoystickButton shooterButton = new JoystickButton(this.gamepad, 6);
+    private final JoystickButton shooterIncSpeedButton = new JoystickButton(this.gamepad, 1);
+    private final JoystickButton shooterDecSpeedButton = new JoystickButton(this.gamepad, 2);
 
     //Contains subsystems, OI devices, and commands.
     public RobotContainer(){
@@ -52,6 +54,8 @@ public class RobotContainer {
         //this.trigger.whenPressed(new InstantCommand(shooterwheel::toggle, shooterwheel));
         shooterButton.whileHeld(new InstantCommand(shooter::shooterOn, shooter));
         shooterButton.whenReleased(new InstantCommand(shooter::shooterOff, shooter));
+        shooterIncSpeedButton.whenPressed(new InstantCommand(shooter::increaseSpeed, shooter));
+        shooterDecSpeedButton.whenPressed(new InstantCommand(shooter::decreaseSpeed, shooter));
 
     }
 
@@ -59,3 +63,4 @@ public class RobotContainer {
         return Automode;
     }
 }
+
